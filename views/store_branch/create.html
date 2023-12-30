@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Books</title>
+</head>
+<body>
+  <h1>store branches</h1>
+
+  <!-- Book List -->
+  <!-- {{#books}}
+    <div>
+      <h2>{{title}}</h2>
+      <p>Author: {{author}}</p>
+      <p>Tags: {{tags}}</p>
+      <p>Price: {{price}}</p>
+    </div>
+  {{/books}} -->
+
+  <form method="POST" action="/api/store_branch">
+    <h2>Create store branch</h2>
+    <label for="BranchAddress">Branch Address:</label>
+    <input type="text" id="BranchAddress" name="BranchAddress" required>
+    <button type="submit">Create</button>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+CREATE TABLE store_branch(branch_id INT PRIMARY KEY IDENTITY , branch_address TEXT NOT NULL);
+CREATE TABLE shelves(shelf_id INT PRIMARY KEY IDENTITY ,shelf_name VARCHAR(3) NOT NULL,branch_id INT NOT NULL,FOREIGN KEY(branch_id) REFERENCES store_branch(branch_id));
+CREATE TABLE shelf_parts(sp_id INT PRIMARY KEY IDENTITY ,sp_number INT NOT NULL,shelf_id INT NOT NULL,FOREIGN KEY(shelf_id) REFERENCES shelves(shelf_id));
+CREATE TABLE books(book_id INT PRIMARY KEY IDENTITY , book_name VARCHAR(20),book_edition INT NOT NULL,print_year DATE,book_price INT NOT NULL,branch_id INT NOT NULL,shelf_id INT NOT NULL, sp_id INT NOT NULL ,FOREIGN KEY(branch_id) REFERENCES store_branch(branch_id),FOREIGN KEY(shelf_id) REFERENCES shelves(shelf_id),FOREIGN KEY(sp_id) REFERENCES shelf_parts(sp_id));
+CREATE TABLE authors(author_id INT PRIMARY KEY IDENTITY ,author_name VARCHAR(20));
+CREATE TABLE tags(tag_id INT PRIMARY KEY IDENTITY ,tag VARCHAR(20));
+CREATE TABLE writers(book_id INT,author_id INT,PRIMARY KEY(book_id,author_id),FOREIGN KEY(book_id) REFERENCES books(book_id),FOREIGN KEY(author_id) REFERENCES authors(author_id));
+CREATE TABLE book_tags(book_id INT , tag_id INT,PRIMARY KEY(book_id,tag_id),FOREIGN KEY(book_id) REFERENCES books(book_id),FOREIGN KEY(tag_id) REFERENCES tags(tag_id));
+-- DROP TABLE store_branch;
+-- DROP TABLE shelves;
+-- DROP TABLE shelf_parts;
+-- DROP TABLE books;
+-- DROP TABLE authors;
+-- DROP TABLE tags;
+-- DROP TABLE writers;
+-- DROP TABLE book_tags;
